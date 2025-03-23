@@ -32,7 +32,7 @@ const createEmptyTimeBlocks = (): TimeBlock[] => {
   ];
 };
 
-export const mockTasks: Task[] = [
+export const MOCK_TASK: Task[] = [
   {
     id: '1',
     title: '프론트엔드 개발 작업',

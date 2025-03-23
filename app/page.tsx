@@ -1,6 +1,10 @@
+import TaskItem from '@/components/task-item';
+import { MOCK_TASK } from '@/mock/data';
 import Link from 'next/link';
 
 export default function Home() {
+  const tasks = MOCK_TASK;
+
   return (
     <main className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
       <div className="flex flex-row justify-between items-center gap-4">
@@ -21,7 +25,15 @@ export default function Home() {
           작성
         </Link>
       </div>
-      <div className="mb-6">{/* 업무일지 리스트*/}</div>
+      <div className="my-6">
+        {tasks.length > 0 ? (
+          tasks.map((task) => <TaskItem key={task.id} task={task} />)
+        ) : (
+          <p className="text-center text-gray-500">
+            아직 작성된 업무일지가 없습니다.
+          </p>
+        )}
+      </div>
     </main>
   );
 }
