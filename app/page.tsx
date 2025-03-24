@@ -1,4 +1,6 @@
 import TaskItem from '@/components/task-item';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { MOCK_TASK } from '@/mock/data';
 import Link from 'next/link';
 
@@ -9,14 +11,10 @@ export default function Home() {
     <main className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
       <div className="flex flex-row justify-between items-center gap-4">
         <form className="flex items-center flex-1 ">
-          <input
-            type="text"
-            placeholder="업무일지 검색..."
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button type="submit" className="sr-only">
+          <Input type="text" placeholder="업무일지 검색..." />
+          <Button type="submit" className="sr-only">
             검색
-          </button>
+          </Button>
         </form>
         <Link
           href="/task"

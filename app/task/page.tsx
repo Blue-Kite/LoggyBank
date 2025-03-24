@@ -5,6 +5,10 @@ import { useRouter } from 'next/navigation';
 import { generateDefaultTimeBlocks } from '@/lib/utils';
 import { v4 as uuidv4 } from 'uuid';
 import { Clock, Plus, Trash2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 
 export default function CreateTask() {
   const router = useRouter();
@@ -44,7 +48,7 @@ export default function CreateTask() {
       updatedAt: new Date(),
     };
 
-    // TODO: 실제 API 호출
+    // TODO: API 연동
     console.log('New Task:', newTask);
 
     // 작성 완료 후 목록 페이지로 이동
@@ -58,18 +62,11 @@ export default function CreateTask() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
         <div>
-          <label
-            htmlFor="title"
-            className="block mb-2 font-medium text-gray-700"
-          >
-            제목
-          </label>
-          <input
+          <Label htmlFor="title">제목</Label>
+          <Input
             type="text"
-            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="태스크 제목"
             required
           />
@@ -78,18 +75,14 @@ export default function CreateTask() {
         {/* 타임라인 섹션 */}
         <div>
           <div className="flex justify-between items-center mb-3">
-            <label className="font-medium text-gray-700 flex items-center">
+            <Label className="font-medium text-gray-700 flex items-center">
               <Clock className="mr-2 text-blue-500" size={20} />
               타임라인
-            </label>
-            <button
-              type="button"
-              onClick={addTimeBlock}
-              className="flex items-center text-green-600 hover:text-green-700"
-            >
+            </Label>
+            <Button onClick={addTimeBlock}>
               <Plus className="mr-1" size={16} />
               블록 추가
-            </button>
+            </Button>
           </div>
           <div className="space-y-2">
             {timeline.map((block, index) => (
@@ -98,49 +91,48 @@ export default function CreateTask() {
                 className="flex items-center space-x-2 bg-gray-50 p-2 rounded-md"
               >
                 {index >= 8 ? (
-                  <input
+                  <Input
                     type="time"
                     value={block.startTime}
                     onChange={(e) =>
                       updateTimeBlock(index, { startTime: e.target.value })
                     }
-                    className="p-1 border rounded"
+                    className="w-30"
                   />
                 ) : (
                   <span className="p-1 text-gray-600">{block.startTime}</span>
                 )}
 
                 {index >= 8 ? (
-                  <input
+                  <Input
                     type="time"
                     value={block.endTime}
                     onChange={(e) =>
                       updateTimeBlock(index, { endTime: e.target.value })
                     }
-                    className="p-1 border rounded"
+                    className="w-30"
                   />
                 ) : (
                   <span className="p-1 text-gray-600">{block.endTime}</span>
                 )}
 
-                <input
+                <Input
                   type="text"
                   placeholder="설명"
                   value={block.description || ''}
                   onChange={(e) =>
                     updateTimeBlock(index, { description: e.target.value })
                   }
-                  className="flex-grow p-1 border rounded"
+                  className="flex-grow"
                 />
 
                 {index >= 8 && (
-                  <button
-                    type="button"
+                  <Button
                     onClick={() => removeTimeBlock(index)}
-                    className="text-red-500 hover:text-red-600"
+                    variant="outline"
                   >
                     <Trash2 size={16} />
-                  </button>
+                  </Button>
                 )}
               </div>
             ))}
@@ -149,51 +141,39 @@ export default function CreateTask() {
 
         {/* 할 일 설명 */}
         <div>
-          <label
+          <Label
             htmlFor="todoDescription"
             className="block mb-2 font-medium text-gray-700"
           >
             할 일 설명
-          </label>
-          <textarea
-            id="todoDescription"
+          </Label>
+          <Textarea
             value={todoDescription}
             onChange={(e) => setTodoDescription(e.target.value)}
-            className="w-full p-2 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* 완료 설명 */}
         <div>
-          <label
+          <Label
             htmlFor="doneDescription"
             className="block mb-2 font-medium text-gray-700"
           >
             완료 설명
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             id="doneDescription"
             value={doneDescription}
             onChange={(e) => setDoneDescription(e.target.value)}
-            className="w-full p-2 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* 제출 버튼 */}
         <div className="flex justify-end space-x-2">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-          >
+          <Button variant="outline" onClick={() => router.back()}>
             취소
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          >
-            생성
-          </button>
+          </Button>
+          <Button type="submit">생성</Button>
         </div>
       </form>
     </div>
