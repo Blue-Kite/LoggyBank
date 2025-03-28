@@ -12,4 +12,5 @@ interface Task {
   doneDescription: string;
   createdAt: Date;
   updatedAt: Date;
+  deletedAt: null | Date;
 }

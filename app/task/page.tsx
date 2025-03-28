@@ -46,6 +46,7 @@ export default function CreateTask() {
       timeline: timeline.filter((block) => block.startTime && block.endTime),
       createdAt: new Date(),
       updatedAt: new Date(),
+      deletedAt: null,
     };
 
     // TODO: API 연동

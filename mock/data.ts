@@ -43,6 +43,7 @@ export const MOCK_TASK: Task[] = [
       '로그인 페이지 UI 완성, 기본 폼 검증 추가, 로그인 API 연동 완료',
     createdAt: new Date('2025-03-22T09:00:00'),
     updatedAt: new Date('2025-03-22T18:30:00'),
+    deletedAt: null,
   },
   {
     id: '2',
@@ -76,6 +77,7 @@ export const MOCK_TASK: Task[] = [
       '사용자 CRUD API 설계 완료, JWT 기반 인증 플로우 정의, Swagger 문서 초안 작성',
     createdAt: new Date('2025-03-21T08:30:00'),
     updatedAt: new Date('2025-03-21T18:15:00'),
+    deletedAt: null,
   },
   {
     id: '3',
@@ -96,6 +98,7 @@ export const MOCK_TASK: Task[] = [
       '전체 ERD 완성, 인덱스 생성 스크립트 작성, 초기 데이터 시드 스크립트 작성 완료',
     createdAt: new Date('2025-03-20T09:15:00'),
     updatedAt: new Date('2025-03-20T17:45:00'),
+    deletedAt: null,
   },
   {
     id: '4',
@@ -106,6 +109,7 @@ export const MOCK_TASK: Task[] = [
       '프로젝트 범위 합의, 핵심 기능 5개 정의, 2개월 일정 계획 수립 완료',
     createdAt: new Date('2025-03-19T10:00:00'),
     updatedAt: new Date('2025-03-19T16:30:00'),
+    deletedAt: null,
   },
   {
     id: '5',
@@ -117,5 +121,6 @@ export const MOCK_TASK: Task[] = [
       '7명의 테스트 사용자로부터 피드백 수집 완료, 주요 UX 이슈 3개 발견 및 문서화',
     createdAt: new Date('2025-03-18T09:30:00'),
     updatedAt: new Date('2025-03-18T17:00:00'),
+    deletedAt: null,
   },
 ];
