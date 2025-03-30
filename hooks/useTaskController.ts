@@ -1,6 +1,12 @@
-import { deleteTask, getTasks, getTasksBySearch } from '@/apis/task';
+import {
+  createTask,
+  deleteTask,
+  getTasks,
+  getTasksBySearch,
+  updateTask,
+} from '@/apis/task';
 import { mapDbTaskToFrontend } from '@/lib/utils';
-import { Task } from '@/types/types';
+import { Task, TaskParams } from '@/types/types';
 import { useEffect, useState } from 'react';
 
 export const useTaskController = () => {
@@ -16,7 +22,7 @@ export const useTaskController = () => {
         setTasks(transformedTasks);
       }
     } catch (error) {
-      console.error(error);
+      console.error('Failed to get tasks:', error);
     } finally {
       setLoading(false);
     }
@@ -34,6 +40,45 @@ export const useTaskController = () => {
     }
   };
 
+  const onCreateTask = async ({
+    title,
+    timeline,
+    todoDescription,
+    doneDescription,
+  }: TaskParams) => {
+    try {
+      await createTask({
+        title,
+        timeline,
+        todoDescription,
+        doneDescription,
+      });
+
+      await onGetTasks();
+    } catch (error) {
+      console.error('Failed to create task:', error);
+    }
+  };
+
+  const onUpdateTask = async (
+    id: number,
+    { title, timeline, todoDescription, doneDescription }: TaskParams,
+  ) => {
+    try {
+      await updateTask(id, {
+        title,
+        timeline,
+        todoDescription,
+        doneDescription,
+      });
+
+      await onGetTasks();
+    } catch (error) {
+      console.error('Failed to update task:', error);
+      return false;
+    }
+  };
+
   const onDeleteTask = async (id: number) => {
     await deleteTask(id);
     await onGetTasks();
@@ -48,5 +93,7 @@ export const useTaskController = () => {
     tasks,
     onSearchTasks,
     onDeleteTask,
+    onCreateTask,
+    onUpdateTask,
   };
 };

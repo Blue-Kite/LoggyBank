@@ -31,9 +31,6 @@ export const mapDbTaskToFrontend = (dbTask: TaskDto): Task => {
 };
 
 export const generateDefaultTimeBlocks = (): TimeBlock[] => {
-  const defaultBlocks: TimeBlock[] = [];
-
-  // default
   const hours = [
     { start: '09:00', end: '10:00' },
     { start: '10:00', end: '11:00' },

@@ -1,6 +1,7 @@
 'use client';
 
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
+import { TaskParams } from '@/types/types';
 
 export const getTasks = async () => {
   const supabase = createSupabaseBrowserClient();
@@ -35,36 +36,39 @@ export const getTasksBySearch = async (term: string) => {
   return data;
 };
 
-export const createTask = async () => {
+export const createTask = async ({
+  title,
+  timeline,
+  todoDescription,
+  doneDescription,
+}: TaskParams) => {
   const supabase = createSupabaseBrowserClient();
+
   const { data } = await supabase
     .from('task')
     .insert({
-      title: '새로운 태스크',
-      timeline: [
-        {
-          startTime: '11:00',
-          endTime: '12:00',
-          description: '프로젝트 문서 작성',
-        },
-        {
-          startTime: '13:00',
-          endTime: '14:00',
-          description: '팀 회의',
-        },
-      ],
+      title,
+      timeline: timeline,
+      todo_description: todoDescription,
+      done_description: doneDescription,
     })
     .select();
 
   return data;
 };
 
-export const updateTask = async (id: number, title: string) => {
+export const updateTask = async (
+  id: number,
+  { title, timeline, todoDescription, doneDescription }: TaskParams,
+) => {
   const supabase = createSupabaseBrowserClient();
   const { data } = await supabase
     .from('task')
     .update({
-      title: title,
+      title,
+      timeline: timeline,
+      todo_description: todoDescription,
+      done_description: doneDescription,
       updated_at: new Date().toISOString(),
     })
     .eq('id', id)

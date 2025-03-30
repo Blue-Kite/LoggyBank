@@ -1,3 +1,7 @@
+import { Database } from './database.types';
+
+export type TaskDto = Database['public']['Tables']['task']['Row'];
+
 export interface TimeBlock {
   startTime: string;
   endTime: string;
@@ -13,4 +17,11 @@ export interface Task {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null | Date;
+}
+
+export interface TaskParams {
+  title: string;
+  timeline: { startTime: string; endTime: string; description?: string }[];
+  todoDescription: string;
+  doneDescription: string;
 }

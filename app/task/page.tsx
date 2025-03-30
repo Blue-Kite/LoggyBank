@@ -3,16 +3,17 @@
 import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { generateDefaultTimeBlocks } from '@/lib/utils';
-import { v4 as uuidv4 } from 'uuid';
 import { Clock, Plus, Trash2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { createTask } from '@/apis/task';
+import { TimeBlock } from '@/types/types';
+import { useTaskController } from '@/hooks/useTaskController';
 
 export default function CreateTask() {
   const router = useRouter();
+  const { onCreateTask } = useTaskController();
 
   const [title, setTitle] = useState('');
   const [todoDescription, setTodoDescription] = useState('');
@@ -20,6 +21,7 @@ export default function CreateTask() {
   const [timeline, setTimeline] = useState<TimeBlock[]>(
     generateDefaultTimeBlocks(),
   );
+  const [submitting, setSubmitting] = useState(false);
 
   const updateTimeBlock = (index: number, updates: Partial<TimeBlock>) => {
     const newTimeline = [...timeline];
@@ -36,25 +38,28 @@ export default function CreateTask() {
     setTimeline(newTimeline);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
 
-    const newTask: Task = {
-      id: uuidv4(),
-      title,
-      todoDescription,
-      doneDescription,
-      timeline: timeline.filter((block) => block.startTime && block.endTime),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      deletedAt: null,
-    };
+    try {
+      const validTimeline = timeline.filter(
+        (block) => block.startTime && block.endTime,
+      );
 
-    // TODO: API 연동
-    createTask();
+      await onCreateTask({
+        title,
+        todoDescription,
+        doneDescription,
+        timeline: validTimeline,
+      });
 
-    // 작성 완료 후 목록 페이지로 이동
-    router.push('/task');
+      router.push('/');
+    } catch (error) {
+      console.error('Failed to submit form:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -147,7 +152,7 @@ export default function CreateTask() {
             htmlFor="todoDescription"
             className="block mb-2 font-medium text-gray-700"
           >
-            할 일 설명
+            앞으로 할 일
           </Label>
           <Textarea
             value={todoDescription}
@@ -161,7 +166,7 @@ export default function CreateTask() {
             htmlFor="doneDescription"
             className="block mb-2 font-medium text-gray-700"
           >
-            완료 설명
+            완료한 일
           </Label>
           <Textarea
             id="doneDescription"
@@ -172,7 +177,7 @@ export default function CreateTask() {
 
         {/* 제출 버튼 */}
         <div className="flex justify-end space-x-2">
-          <Button variant="outline" onClick={() => router.back()}>
+          <Button type="button" variant="outline" onClick={() => router.back()}>
             취소
           </Button>
           <Button type="submit">생성</Button>
