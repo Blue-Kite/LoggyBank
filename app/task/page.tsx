@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { createTask } from '@/apis/task';
 
 export default function CreateTask() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function CreateTask() {
     };
 
     // TODO: API 연동
-    console.log('New Task:', newTask);
+    createTask();
 
     // 작성 완료 후 목록 페이지로 이동
     router.push('/task');

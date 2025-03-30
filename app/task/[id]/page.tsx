@@ -1,18 +1,21 @@
-import { MOCK_TASK } from '@/mock/data';
-import { notFound } from 'next/navigation';
+'use client';
+
 import dayjs from 'dayjs';
 import { Clock, Calendar, FileText, Check } from 'lucide-react';
 import Link from 'next/link';
+import { useTaskDetailController } from '@/hooks/useTaskDetailController';
+import { use } from 'react';
 
 export default function DetailTask({
   params,
 }: {
-  params: { id: string | string[] };
+  params: Promise<{ id: string }>;
 }) {
-  const task = MOCK_TASK.find((task) => task.id === params.id);
+  const resolvedParams = use(params);
+  const { loading, task } = useTaskDetailController(resolvedParams.id);
 
   if (!task) {
-    return notFound();
+    return <div>데이터 없음</div>;
   }
 
   return (
@@ -21,7 +24,7 @@ export default function DetailTask({
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{task.title}</h1>
         <Link
-          href={`/task/${params.id}/edit`}
+          href={`/task/${resolvedParams.id}/edit`}
           className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
         >
           수정

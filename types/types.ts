@@ -1,10 +1,10 @@
-interface TimeBlock {
+export interface TimeBlock {
   startTime: string;
   endTime: string;
   description?: string;
 }
 
-interface Task {
+export interface Task {
   id: string;
   title: string;
   timeline: TimeBlock[];

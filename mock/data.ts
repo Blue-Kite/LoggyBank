@@ -1,3 +1,5 @@
+import { Task, TimeBlock } from '@/types/types';
+
 const createTimeBlocks = (): TimeBlock[] => {
   return [
     {

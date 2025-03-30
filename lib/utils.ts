@@ -1,9 +1,34 @@
+import { Task, TaskDto, TimeBlock } from '@/types/types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const mapDbTaskToFrontend = (dbTask: TaskDto): Task => {
+  let timelineData: TimeBlock[] = [];
+
+  if (dbTask.timeline && Array.isArray(dbTask.timeline)) {
+    timelineData = (dbTask.timeline as any[]).map((item) => ({
+      startTime: typeof item.startTime === 'string' ? item.startTime : '',
+      endTime: typeof item.endTime === 'string' ? item.endTime : '',
+      description:
+        typeof item.description === 'string' ? item.description : undefined,
+    }));
+  }
+
+  return {
+    id: dbTask.id.toString(),
+    title: dbTask.title,
+    timeline: timelineData,
+    todoDescription: dbTask.todo_description,
+    doneDescription: dbTask.done_description,
+    createdAt: new Date(dbTask.created_at),
+    updatedAt: new Date(dbTask.updated_at),
+    deletedAt: dbTask.deleted_at ? new Date(dbTask.deleted_at) : null,
+  };
+};
 
 export const generateDefaultTimeBlocks = (): TimeBlock[] => {
   const defaultBlocks: TimeBlock[] = [];
