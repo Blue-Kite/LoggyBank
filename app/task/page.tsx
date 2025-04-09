@@ -21,7 +21,7 @@ export default function CreateTask() {
   const [timeline, setTimeline] = useState<TimeBlock[]>(
     generateDefaultTimeBlocks(),
   );
-  const [submitting, setSubmitting] = useState(false);
+  const [, setSubmitting] = useState(false);
 
   const updateTimeBlock = (index: number, updates: Partial<TimeBlock>) => {
     const newTimeline = [...timeline];

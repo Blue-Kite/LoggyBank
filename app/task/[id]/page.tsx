@@ -12,7 +12,7 @@ export default function DetailTask({
   params: Promise<{ id: string }>;
 }) {
   const resolvedParams = use(params);
-  const { loading, task } = useTaskDetailController(resolvedParams.id);
+  const { task } = useTaskDetailController(resolvedParams.id);
 
   if (!task) {
     return <div>데이터 없음</div>;

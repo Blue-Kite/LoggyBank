@@ -1,3 +1,4 @@
+import { Json } from '@/types/database.types';
 import { Task, TaskDto, TimeBlock } from '@/types/types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -10,12 +11,17 @@ export const mapDbTaskToFrontend = (dbTask: TaskDto): Task => {
   let timelineData: TimeBlock[] = [];
 
   if (dbTask.timeline && Array.isArray(dbTask.timeline)) {
-    timelineData = (dbTask.timeline as any[]).map((item) => ({
-      startTime: typeof item.startTime === 'string' ? item.startTime : '',
-      endTime: typeof item.endTime === 'string' ? item.endTime : '',
-      description:
-        typeof item.description === 'string' ? item.description : undefined,
-    }));
+    timelineData = (dbTask.timeline as Json[])
+      .filter(
+        (item): item is Record<string, Json> =>
+          item !== null && typeof item === 'object' && !Array.isArray(item),
+      )
+      .map((item) => ({
+        startTime: typeof item.startTime === 'string' ? item.startTime : '',
+        endTime: typeof item.endTime === 'string' ? item.endTime : '',
+        description:
+          typeof item.description === 'string' ? item.description : undefined,
+      }));
   }
 
   return {

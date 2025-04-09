@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 
 export default function Home() {
-  const { loading, tasks, onDeleteTask, onSearchTasks } = useTaskController();
+  const { tasks, onDeleteTask, onSearchTasks } = useTaskController();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {

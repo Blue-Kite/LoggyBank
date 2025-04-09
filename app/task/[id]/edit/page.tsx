@@ -18,7 +18,7 @@ export default function EditTask({
 }) {
   const router = useRouter();
   const { id } = use(params);
-  const { loading, task } = useTaskDetailController(id);
+  const { task } = useTaskDetailController(id);
   const { onUpdateTask } = useTaskController();
 
   const [title, setTitle] = useState('');
