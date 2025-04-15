@@ -63,7 +63,7 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
+    <div className="flex flex-col flex-grow w-full max-w-4xl">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">새 태스크 생성</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">

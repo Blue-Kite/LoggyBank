@@ -18,7 +18,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
+    <main className="flex flex-col flex-grow">
       <div className="flex flex-row justify-between items-center gap-4">
         <form className="flex items-center flex-1" onSubmit={handleSubmit}>
           <Input
@@ -38,7 +38,7 @@ export default function Home() {
           작성
         </Link>
       </div>
-      <div className="my-6">
+      <div className="my-8">
         {tasks.length > 0 ? (
           tasks.map((task) => (
             <TaskItem key={task.id} task={task} handleDelete={onDeleteTask} />
