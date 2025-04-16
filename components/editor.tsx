@@ -1,4 +1,5 @@
 'use client';
+
 import dynamic from 'next/dynamic';
 import { useCallback, useMemo } from 'react';
 import type ReactQuill from 'react-quill-new';
@@ -59,6 +60,7 @@ export default function Editor({
             const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data.fullPath}`;
             if (range) {
               quill.insertEmbed(range.index, 'image', imageUrl);
+              quill.setSelection(range.index + 1, 0);
               setImages((prevImages) => [...prevImages, imageUrl]);
             }
           }
