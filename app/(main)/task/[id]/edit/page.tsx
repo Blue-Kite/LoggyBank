@@ -76,7 +76,7 @@ export default function EditTask({
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
+    <div className="flex flex-col flex-grow w-full py-8">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">태스크 수정</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">

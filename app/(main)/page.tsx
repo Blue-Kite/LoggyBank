@@ -13,12 +13,11 @@ export default function Home() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log('submit');
     await onSearchTasks(searchTerm);
   };
 
   return (
-    <main className="flex flex-col flex-grow">
+    <div className="flex flex-col flex-grow">
       <div className="flex flex-row justify-between items-center gap-4">
         <form className="flex items-center flex-1" onSubmit={handleSubmit}>
           <Input
@@ -49,6 +48,6 @@ export default function Home() {
           </p>
         )}
       </div>
-    </main>
+    </div>
   );
 }

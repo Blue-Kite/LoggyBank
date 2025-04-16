@@ -19,7 +19,7 @@ export default function DetailTask({
   }
 
   return (
-    <div className="flex flex-col flex-grow gap-4 w-full max-w-4xl mx-auto py-8 bg-white">
+    <div className="flex flex-col flex-grow gap-4 w-full py-8 bg-white">
       {/* Task Title */}
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{task.title}</h1>
