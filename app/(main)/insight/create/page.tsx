@@ -1,5 +1,6 @@
 'use client';
 
+import { deleteFile } from '@/actions/storage';
 import Editor from '@/components/editor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,11 +24,23 @@ export default function CreateInsight() {
     console.log('images', images);
   };
 
+  const handleDeleteFile = async () => {
+    try {
+      const data = await deleteFile('newneek.jpeg');
+    } catch (error) {
+      console.log('error');
+    }
+  };
+
   return (
     <div className="flex flex-col flex-grow w-full ">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         새 인사이트 작성
       </h1>
+
+      {/*임시버튼 */}
+      <Button onClick={handleDeleteFile}>파일삭제</Button>
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
         <div>

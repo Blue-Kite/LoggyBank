@@ -15,3 +15,17 @@ export async function uploadFile(file: File) {
 
   return data;
 }
+
+export async function deleteFile(fileName: string) {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.storage
+    .from(process.env.NEXT_PUBLIC_STORAGE_BUCKET!)
+    .remove([fileName]);
+
+  if (error) {
+    throw Error('Error file delete in with Supabase', error);
+  }
+
+  return data;
+}

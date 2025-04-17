@@ -2,10 +2,11 @@
 
 import dynamic from 'next/dynamic';
 import { useCallback, useMemo } from 'react';
-import type ReactQuill from 'react-quill-new';
 import type { ComponentProps, RefObject } from 'react';
-import 'react-quill-new/dist/quill.snow.css';
 import { uploadFile } from '@/actions/storage';
+import { getImageUrl } from '@/lib/utils';
+import type ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 
 interface QuillProps extends ComponentProps<typeof ReactQuill> {
   forwardedRef: React.Ref<ReactQuill>;
@@ -13,7 +14,10 @@ interface QuillProps extends ComponentProps<typeof ReactQuill> {
 
 const ReactQuillComponent = dynamic(
   async () => {
-    const { default: RQ } = await import('react-quill-new');
+    const { default: RQ, Quill } = await import('react-quill-new');
+    const { ImageResize } = await import('quill-image-resize-module-ts');
+
+    Quill.register('modules/ImageResize', ImageResize);
 
     const Component = ({ forwardedRef, ...props }: QuillProps) => (
       <RQ ref={forwardedRef} {...props} />
@@ -56,8 +60,7 @@ export default function Editor({
           if (data && quillRef && quillRef.current) {
             const quill = quillRef.current.getEditor();
             const range = quill.getSelection();
-
-            const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data.fullPath}`;
+            const imageUrl = getImageUrl(data.fullPath);
             if (range) {
               quill.insertEmbed(range.index, 'image', imageUrl);
               quill.setSelection(range.index + 1, 0);
@@ -91,6 +94,9 @@ export default function Editor({
           ['link'],
         ],
         handlers: { image: handleImageAdd },
+      },
+      ImageResize: {
+        modules: ['Resize', 'DisplaySize'],
       },
     }),
     [handleImageAdd],
