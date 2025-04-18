@@ -1,4 +1,4 @@
-import { getTaskById } from '@/apis/task';
+import { getTaskById } from '@/actions/task';
 import { mapDbTaskToFrontend } from '@/lib/utils';
 import { Task } from '@/types/types';
 import { useEffect, useState } from 'react';

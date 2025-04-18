@@ -1,10 +1,11 @@
-'use client';
+'use server';
 
-import { createSupabaseBrowserClient } from '@/lib/supabase/client';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { TaskParams } from '@/types/types';
 
 export const getTasks = async () => {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = await createSupabaseServerClient();
+
   let { data } = await supabase
     .from('task')
     .select('*')
@@ -14,7 +15,8 @@ export const getTasks = async () => {
 };
 
 export const getTaskById = async (id: number) => {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = await createSupabaseServerClient();
+
   let { data } = await supabase
     .from('task')
     .select('*')
@@ -25,7 +27,8 @@ export const getTaskById = async (id: number) => {
 };
 
 export const getTasksBySearch = async (term: string) => {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = await createSupabaseServerClient();
+
   let { data } = await supabase
     .from('task')
     .select('*')
@@ -41,8 +44,11 @@ export const createTask = async ({
   timeline,
   todoDescription,
   doneDescription,
-}: TaskParams) => {
-  const supabase = createSupabaseBrowserClient();
+  user_id,
+}: TaskParams & {
+  user_id: string;
+}) => {
+  const supabase = await createSupabaseServerClient();
 
   const { data } = await supabase
     .from('task')
@@ -51,6 +57,7 @@ export const createTask = async ({
       timeline: timeline,
       todo_description: todoDescription,
       done_description: doneDescription,
+      user_id: user_id,
     })
     .select();
 
@@ -61,7 +68,8 @@ export const updateTask = async (
   id: number,
   { title, timeline, todoDescription, doneDescription }: TaskParams,
 ) => {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = await createSupabaseServerClient();
+
   const { data } = await supabase
     .from('task')
     .update({
@@ -78,7 +86,8 @@ export const updateTask = async (
 };
 
 export const deleteTask = async (id: number) => {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = await createSupabaseServerClient();
+
   const { data } = await supabase
     .from('task')
     .update({

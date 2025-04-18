@@ -1,10 +1,11 @@
+import { getUser } from '@/actions/auth';
 import {
   createTask,
   deleteTask,
   getTasks,
   getTasksBySearch,
   updateTask,
-} from '@/apis/task';
+} from '@/actions/task';
 import { mapDbTaskToFrontend } from '@/lib/utils';
 import { Task, TaskParams } from '@/types/types';
 import { useEffect, useState } from 'react';
@@ -17,6 +18,7 @@ export const useTaskController = () => {
     setLoading(true);
     try {
       const result = await getTasks();
+
       if (result) {
         const transformedTasks = result.map(mapDbTaskToFrontend);
         setTasks(transformedTasks);
@@ -45,18 +47,25 @@ export const useTaskController = () => {
     timeline,
     todoDescription,
     doneDescription,
-  }: TaskParams) => {
-    try {
-      await createTask({
-        title,
-        timeline,
-        todoDescription,
-        doneDescription,
-      });
+  }: TaskParams & {
+    user_id: string;
+  }) => {
+    const user = await getUser();
 
-      await onGetTasks();
-    } catch (error) {
-      console.error('Failed to create task:', error);
+    if (user) {
+      try {
+        await createTask({
+          title,
+          timeline,
+          todoDescription,
+          doneDescription,
+          user_id: user.id,
+        });
+
+        await onGetTasks();
+      } catch (error) {
+        console.error('Failed to create task:', error);
+      }
     }
   };
 
