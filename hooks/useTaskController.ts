@@ -47,9 +47,7 @@ export const useTaskController = () => {
     timeline,
     todoDescription,
     doneDescription,
-  }: TaskParams & {
-    user_id: string;
-  }) => {
+  }: TaskParams) => {
     const user = await getUser();
 
     if (user) {

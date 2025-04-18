@@ -25,3 +25,17 @@ export interface TaskParams {
   todoDescription: string;
   doneDescription: string;
 }
+
+export interface Insight {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null | Date;
+}
+
+export interface InsightParams {
+  title: string;
+  content: string;
+}

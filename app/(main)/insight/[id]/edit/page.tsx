@@ -2,60 +2,73 @@
 
 import Editor from '@/components/editor';
 import { Button } from '@/components/ui/button';
-
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useInsightController } from '@/hooks/useInsightController';
+import { useInsightDetailController } from '@/hooks/useInsightDetailController';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, use, useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill-new';
 
-export default function CreateInsight() {
+export default function EditInsight({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const router = useRouter();
-  const { onCreateInsight } = useInsightController();
+  const { id } = use(params);
+  const { onUpdateInsight } = useInsightController();
+  const { insight } = useInsightDetailController(id);
 
   const quillRef = useRef<ReactQuill | null>(null);
 
-  const [, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (insight) {
+      setTitle(insight.title);
+      setContent(insight.content);
+
+      const imgRegex = /<img[^>]+src="([^">]+)"/g;
+      const extractedImages: string[] = [];
+      let match;
+
+      while ((match = imgRegex.exec(insight.content)) !== null) {
+        extractedImages.push(match[1]);
+      }
+
+      setImages(extractedImages);
+    }
+  }, [insight]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
     try {
-      await onCreateInsight({
+      if (!insight) {
+        throw new Error('인사이트 데이터가 없습니다.');
+      }
+
+      await onUpdateInsight(Number(id), {
         title,
         content,
       });
 
-      router.push('/insight');
+      router.push(`/insight/${id}`);
     } catch (error) {
-      console.error('Failed to submit form:', error);
+      console.error('Failed to update insight:', error);
     } finally {
       setSubmitting(false);
     }
   };
 
-  // const handleDeleteFile = async () => {
-  //   try {
-  //     const data = await deleteFile('newneek.jpeg');
-  //   } catch (error) {
-  //     console.log('error');
-  //   }
-  // };
-
   return (
-    <div className="flex flex-col flex-grow w-full ">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">
-        새 인사이트 작성
-      </h1>
-
-      {/*임시버튼 */}
-      {/* <Button onClick={handleDeleteFile}>파일삭제</Button> */}
-
+    <div className="flex flex-col flex-grow w-full py-8">
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">인사이트 수정</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
         <div>
@@ -67,7 +80,8 @@ export default function CreateInsight() {
             required
           />
         </div>
-        {/* 에디터  */}
+
+        {/* 에디터 */}
         <Editor
           quillRef={quillRef}
           content={content}
@@ -79,7 +93,9 @@ export default function CreateInsight() {
           <Button type="button" variant="outline" onClick={() => router.back()}>
             취소
           </Button>
-          <Button type="submit">생성</Button>
+          <Button type="submit" disabled={submitting}>
+            {submitting ? '저장 중...' : '저장'}
+          </Button>
         </div>
       </form>
     </div>

@@ -64,6 +64,8 @@ export default function Editor({
             if (range) {
               quill.insertEmbed(range.index, 'image', imageUrl);
               quill.setSelection(range.index + 1, 0);
+              quill.insertText(range.index + 1, '\n');
+
               setImages((prevImages) => [...prevImages, imageUrl]);
             }
           }
