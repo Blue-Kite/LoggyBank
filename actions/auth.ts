@@ -3,13 +3,19 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 
+function getDefaultUrl() {
+  return process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_SITE_URL || `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
+}
+
 export async function signInWithGoogle() {
   const supabase = await createSupabaseServerClient();
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      redirectTo: `${getDefaultUrl()}/auth/callback`,
     },
   });
 
@@ -31,7 +37,7 @@ export async function signInWithGithub() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      redirectTo: `${getDefaultUrl()}/auth/callback`,
     },
   });
 
