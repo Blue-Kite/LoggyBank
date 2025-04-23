@@ -1,6 +1,6 @@
 import { getInsightById } from '@/actions/insight';
 
-import { Insight, Task } from '@/types/types';
+import { Insight } from '@/types/types';
 import { useEffect, useState } from 'react';
 
 export const useInsightDetailController = (id: string) => {

@@ -1,27 +1,27 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import { Trash } from 'lucide-react';
-import { Insight } from '@/types/types';
+import { Review } from '@/types/types';
 
 interface Props {
-  insight: Insight;
+  review: Review;
   handleDelete: (id: number) => void;
 }
 
-export default function InsightItem({ insight, handleDelete }: Props) {
+export default function ReviewItem({ review, handleDelete }: Props) {
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    handleDelete(Number(insight.id));
+    handleDelete(Number(review.id));
   };
 
   return (
-    <Link href={`/insight/${insight.id}`} className="block">
+    <Link href={`/review/${review.id}`} className="block">
       <div className="flex border rounded-md p-4 hover:shadow-md transition-shadow justify-between items-center">
         <div>
-          <h3 className="font-medium text-lg">{insight.title}</h3>
+          <h3 className="font-medium text-lg">{review.title}</h3>
           <p className="text-sm text-gray-500">
-            {dayjs(insight.createdAt).format('YYYY-MM-DD')}
+            {dayjs(review.createdAt).format('YYYY-MM-DD')}
           </p>
         </div>
         <Trash

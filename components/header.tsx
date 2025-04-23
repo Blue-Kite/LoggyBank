@@ -38,7 +38,7 @@ export default function Header() {
       </h1>
 
       <div className="flex flex-row gap-5">
-        <Button variant="outline">search</Button>
+        {/* <Button variant="outline">search</Button> */}
         <Button variant="outline" onClick={signOut}>
           logout
         </Button>

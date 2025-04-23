@@ -39,3 +39,17 @@ export interface InsightParams {
   title: string;
   content: string;
 }
+
+export interface Review {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null | Date;
+}
+
+export interface ReviewParams {
+  title: string;
+  content: string;
+}
