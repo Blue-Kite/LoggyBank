@@ -20,23 +20,23 @@ export default function DetailReview({
   }
 
   return (
-    <div className="flex flex-col flex-grow gap-4 w-full py-8 bg-white">
+    <div className="flex w-full flex-grow flex-col gap-4 bg-white py-8">
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{review.title}</h1>
         <Link
           href={`/review/${resolvedParams.id}/edit`}
-          className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
         >
           수정
         </Link>
       </section>
 
       <section className="mt-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-          <FileText className=" text-purple-500" size={20} />
+        <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-700">
+          <FileText className="text-purple-500" size={20} />
           컨텐츠
         </h2>
-        <div className="text-gray-600 bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
+        <div className="whitespace-pre-wrap rounded-md bg-gray-50 p-3 text-gray-600">
           {review.content}
         </div>
       </section>

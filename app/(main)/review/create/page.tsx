@@ -35,8 +35,8 @@ export default function CreateReview() {
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">새 리뷰 작성</h1>
+    <div className="flex w-full flex-grow flex-col">
+      <h1 className="mb-6 text-2xl font-bold text-gray-800">새 리뷰 작성</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
@@ -56,7 +56,7 @@ export default function CreateReview() {
         <div>
           <Label
             htmlFor="content"
-            className="block mb-2 font-medium text-gray-700"
+            className="mb-2 block font-medium text-gray-700"
           >
             내용
           </Label>

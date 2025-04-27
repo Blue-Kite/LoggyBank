@@ -17,9 +17,9 @@ export default function TaskItem({ task, handleDelete }: TaskItemProps) {
 
   return (
     <Link href={`/task/${task.id}`} className="block">
-      <div className="flex border rounded-md p-4 hover:shadow-md transition-shadow justify-between items-center">
+      <div className="flex items-center justify-between rounded-md border p-4 transition-shadow hover:shadow-md">
         <div>
-          <h3 className="font-medium text-lg">{task.title}</h3>
+          <h3 className="text-lg font-medium">{task.title}</h3>
           <p className="text-sm text-gray-500">
             {dayjs(task.createdAt).format('YYYY-MM-DD')}
           </p>

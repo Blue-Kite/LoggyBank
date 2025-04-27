@@ -25,13 +25,13 @@ export default function DetailInsight({
   }
 
   return (
-    <div className="flex flex-col flex-grow gap-4 w-full py-8 bg-white">
+    <div className="flex w-full flex-grow flex-col gap-4 bg-white py-8">
       {/* Insight Title */}
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{insight.title}</h1>
         <Link
           href={`/insight/${resolvedParams.id}/edit`}
-          className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
         >
           수정
         </Link>

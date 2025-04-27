@@ -17,9 +17,9 @@ export default function ReviewList() {
   };
 
   return (
-    <div className="flex flex-col flex-grow">
-      <div className="flex flex-row justify-between items-center gap-4">
-        <form className="flex items-center flex-1" onSubmit={handleSubmit}>
+    <div className="flex flex-grow flex-col">
+      <div className="flex flex-row items-center justify-between gap-4">
+        <form className="flex flex-1 items-center" onSubmit={handleSubmit}>
           <Input
             type="text"
             value={searchTerm}
@@ -31,7 +31,7 @@ export default function ReviewList() {
         </form>
         <Link
           href="/review/create"
-          className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
         >
           작성
         </Link>

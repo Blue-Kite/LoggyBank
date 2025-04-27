@@ -63,8 +63,8 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full ">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">새 태스크 작성</h1>
+    <div className="flex w-full flex-grow flex-col">
+      <h1 className="mb-6 text-2xl font-bold text-gray-800">새 태스크 작성</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
@@ -81,8 +81,8 @@ export default function CreateTask() {
 
         {/* 타임라인 섹션 */}
         <div>
-          <div className="flex justify-between items-center mb-3">
-            <Label className="font-medium text-gray-700 flex items-center">
+          <div className="mb-3 flex items-center justify-between">
+            <Label className="flex items-center font-medium text-gray-700">
               <Clock className="mr-2 text-blue-500" size={20} />
               타임라인
             </Label>
@@ -95,7 +95,7 @@ export default function CreateTask() {
             {timeline.map((block, index) => (
               <div
                 key={index}
-                className="flex items-center space-x-2 bg-gray-50 p-2 rounded-md"
+                className="flex items-center space-x-2 rounded-md bg-gray-50 p-2"
               >
                 {index >= 8 ? (
                   <Input
@@ -150,7 +150,7 @@ export default function CreateTask() {
         <div>
           <Label
             htmlFor="todoDescription"
-            className="block mb-2 font-medium text-gray-700"
+            className="mb-2 block font-medium text-gray-700"
           >
             앞으로 할 일
           </Label>
@@ -164,7 +164,7 @@ export default function CreateTask() {
         <div>
           <Label
             htmlFor="doneDescription"
-            className="block mb-2 font-medium text-gray-700"
+            className="mb-2 block font-medium text-gray-700"
           >
             완료한 일
           </Label>

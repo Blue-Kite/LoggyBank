@@ -67,8 +67,8 @@ export default function EditInsight({
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">인사이트 수정</h1>
+    <div className="flex w-full flex-grow flex-col py-8">
+      <h1 className="mb-6 text-2xl font-bold text-gray-800">인사이트 수정</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
         <div>

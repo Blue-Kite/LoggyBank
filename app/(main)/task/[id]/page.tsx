@@ -19,13 +19,13 @@ export default function DetailTask({
   }
 
   return (
-    <div className="flex flex-col flex-grow gap-4 w-full py-8 bg-white">
+    <div className="flex w-full flex-grow flex-col gap-4 bg-white py-8">
       {/* Task Title */}
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{task.title}</h1>
         <Link
           href={`/task/${resolvedParams.id}/edit`}
-          className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
         >
           수정
         </Link>
@@ -33,17 +33,17 @@ export default function DetailTask({
 
       {/* Timeline Section */}
       <section className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-          <Clock className=" text-blue-500" size={20} />
+        <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-700">
+          <Clock className="text-blue-500" size={20} />
           타임라인
         </h2>
         <div className="space-y-2">
           {task.timeline.map((block, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-3 rounded-md flex items-center gap-5"
+              className="flex items-center gap-5 rounded-md bg-gray-100 p-3"
             >
-              <span className="font-medium text-gray-700 w-[110px]">
+              <span className="w-[110px] font-medium text-gray-700">
                 {block.startTime} - {block.endTime}
               </span>
               {block.description && (
@@ -56,22 +56,22 @@ export default function DetailTask({
 
       {/* Todo Description */}
       <section className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+        <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-700">
           <FileText className="text-green-500" size={20} />
           앞으로 해야할 일
         </h2>
-        <p className="text-gray-600 bg-gray-50 p-3 rounded-md">
+        <p className="rounded-md bg-gray-50 p-3 text-gray-600">
           {task.todoDescription}
         </p>
       </section>
 
       {/* Done Description */}
       <section className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-          <Check className=" text-purple-500" size={20} />
+        <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-700">
+          <Check className="text-purple-500" size={20} />
           오늘 한 일
         </h2>
-        <p className="text-gray-600 bg-gray-50 p-3 rounded-md">
+        <p className="rounded-md bg-gray-50 p-3 text-gray-600">
           {task.doneDescription}
         </p>
       </section>

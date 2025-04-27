@@ -30,7 +30,7 @@ export default function AuthForm() {
   };
 
   return (
-    <form className="flex flex-col gap-3 w">
+    <form className="w flex flex-col gap-3">
       <Button
         variant="outline"
         type="button"

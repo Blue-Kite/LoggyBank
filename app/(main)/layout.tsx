@@ -8,9 +8,9 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col w-full min-h-screen mx-auto">
+    <div className="mx-auto flex min-h-screen w-full flex-col">
       <Header />
-      <main className="flex flex-col flex-grow w-full max-w-4xl mx-auto py-8">
+      <main className="mx-auto flex w-full max-w-4xl flex-grow flex-col py-8">
         {children}
       </main>
       <Footer />

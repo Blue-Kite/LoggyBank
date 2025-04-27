@@ -50,8 +50,8 @@ export default function EditReview({
   };
 
   return (
-    <div className="flex flex-col flex-grow w-full py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">리뷰 수정</h1>
+    <div className="flex w-full flex-grow flex-col py-8">
+      <h1 className="mb-6 text-2xl font-bold text-gray-800">리뷰 수정</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 제목 입력 */}
@@ -71,7 +71,7 @@ export default function EditReview({
         <div>
           <Label
             htmlFor="content"
-            className="block mb-2 font-medium text-gray-700 flex items-center"
+            className="mb-2 block flex items-center font-medium text-gray-700"
           >
             <FileText className="mr-2 text-purple-500" size={20} />
             내용
