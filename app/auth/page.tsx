@@ -3,14 +3,15 @@ import Image from 'next/image';
 
 export default function Login() {
   return (
-    <div className="flex min-h-screen flex-row items-center justify-center gap-5">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-5 md:flex-row md:gap-5">
       <Image
         src="/loggybank.png"
         alt="LoggyBank Logo"
-        width={384}
-        height={384}
+        width={250}
+        height={250}
+        className="md:h-[384px] md:w-[384px]"
       />
-      <div className="w-300 flex flex-col border border-b-2 p-5">
+      <div className="flex w-full max-w-md flex-col border border-b-2 p-5">
         <div className="mb-4 text-center">
           <h1 className="mb-2 text-2xl font-bold">Welcome to LoggyBank</h1>
           <p className="text-gray-600">Sign in to continue</p>

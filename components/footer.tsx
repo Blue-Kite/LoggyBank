@@ -10,8 +10,9 @@ export default function Footer() {
         </Link>
       </div>
       <div>
-        © 2025. <span className="font-semibold">Kite</span> all rights
-        reserved.
+        © 2025.
+        <span className="text-xs font-semibold sm:text-base"> Kite</span> all
+        rights reserved.
       </div>
     </footer>
   );
