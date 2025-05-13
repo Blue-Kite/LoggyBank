@@ -48,8 +48,8 @@ export default function CreateInsight() {
   // };
 
   return (
-    <div className="flex flex-col flex-grow w-full ">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="flex w-full grow flex-col">
+      <h1 className="mb-6 text-2xl font-bold text-gray-800">
         새 인사이트 작성
       </h1>
 

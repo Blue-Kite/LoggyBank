@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header className="relative flex w-full flex-col items-center justify-between border-b px-4 py-4 sm:flex-row sm:px-8 md:px-20">
-      <h1 className="mb-4 text-xl font-bold sm:absolute sm:left-1/2 sm:mb-0 sm:-translate-x-1/2 sm:transform sm:text-3xl">
+      <h1 className="mb-4 text-xl font-bold sm:absolute sm:left-1/2 sm:mb-0 sm:-translate-x-1/2 sm:text-3xl">
         LoggyBank
       </h1>
 

@@ -16,6 +16,11 @@ const eslintConfig = [
     'plugin:tailwindcss/recommended',
   ),
   ...compat.extends('prettier'),
+  {
+    rules: {
+      'tailwindcss/enforces-shorthand': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;

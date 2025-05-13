@@ -11,7 +11,7 @@ export default function Login() {
         height={250}
         className="md:h-[384px] md:w-[384px]"
       />
-      <div className="flex w-full max-w-md flex-col border border-b-2 p-5">
+      <div className="m-10 mx-5 flex flex-col border border-b-2 p-5">
         <div className="mb-4 text-center">
           <h1 className="mb-2 text-2xl font-bold">Welcome to LoggyBank</h1>
           <p className="text-gray-600">Sign in to continue</p>

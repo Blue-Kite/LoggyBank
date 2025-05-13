@@ -76,7 +76,7 @@ export default function EditTask({
   };
 
   return (
-    <div className="flex w-full flex-grow flex-col py-8">
+    <div className="flex w-full grow flex-col py-8">
       <h1 className="mb-6 text-2xl font-bold text-gray-800">태스크 수정</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -116,7 +116,6 @@ export default function EditTask({
                   onChange={(e) =>
                     updateTimeBlock(index, { startTime: e.target.value })
                   }
-                  className="w-30"
                 />
 
                 <Input
@@ -125,7 +124,6 @@ export default function EditTask({
                   onChange={(e) =>
                     updateTimeBlock(index, { endTime: e.target.value })
                   }
-                  className="w-30"
                 />
 
                 <Input
@@ -135,7 +133,6 @@ export default function EditTask({
                   onChange={(e) =>
                     updateTimeBlock(index, { description: e.target.value })
                   }
-                  className="flex-grow"
                 />
 
                 <Button

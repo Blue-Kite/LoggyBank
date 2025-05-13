@@ -35,7 +35,7 @@ export default function CreateReview() {
   };
 
   return (
-    <div className="flex w-full flex-grow flex-col">
+    <div className="flex w-full grow flex-col">
       <h1 className="mb-6 text-2xl font-bold text-gray-800">새 리뷰 작성</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">

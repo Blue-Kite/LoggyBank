@@ -20,7 +20,7 @@ export default function DetailReview({
   }
 
   return (
-    <div className="flex w-full flex-grow flex-col gap-4 bg-white py-8">
+    <div className="flex w-full grow flex-col gap-4 bg-white py-8">
       <section className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-800">{review.title}</h1>
         <Link

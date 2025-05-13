@@ -17,7 +17,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex grow flex-col">
       <div className="flex flex-row items-center justify-between gap-4">
         <form className="flex flex-1 items-center" onSubmit={handleSubmit}>
           <Input

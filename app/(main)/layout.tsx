@@ -10,7 +10,7 @@ export default function HomeLayout({
   return (
     <div className="mx-auto flex min-h-screen w-full flex-col">
       <Header />
-      <main className="mx-auto flex w-full max-w-4xl flex-grow flex-col py-8">
+      <main className="mx-auto flex w-full max-w-4xl grow flex-col px-5 py-8 sm:px-8 md:px-0">
         {children}
       </main>
       <Footer />

@@ -63,7 +63,7 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="flex w-full flex-grow flex-col">
+    <div className="flex w-full grow flex-col">
       <h1 className="mb-6 text-2xl font-bold text-gray-800">새 태스크 작성</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -104,7 +104,6 @@ export default function CreateTask() {
                     onChange={(e) =>
                       updateTimeBlock(index, { startTime: e.target.value })
                     }
-                    className="w-30"
                   />
                 ) : (
                   <span className="p-1 text-gray-600">{block.startTime}</span>
@@ -117,7 +116,6 @@ export default function CreateTask() {
                     onChange={(e) =>
                       updateTimeBlock(index, { endTime: e.target.value })
                     }
-                    className="w-30"
                   />
                 ) : (
                   <span className="p-1 text-gray-600">{block.endTime}</span>
@@ -130,7 +128,7 @@ export default function CreateTask() {
                   onChange={(e) =>
                     updateTimeBlock(index, { description: e.target.value })
                   }
-                  className="flex-grow"
+                  className="grow"
                 />
 
                 {index >= 8 && (
